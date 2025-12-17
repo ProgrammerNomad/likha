@@ -186,6 +186,95 @@ export function createEditor(options: LikhaEditorOptions) {
 }
 
 /**
+ * Show color picker popup
+ */
+function showColorPicker(button: HTMLElement, onSelect: (color: string) => void) {
+  // Common color palette
+  const colors = [
+    '#000000', '#434343', '#666666', '#999999', '#B7B7B7', '#CCCCCC', '#D9D9D9', '#EFEFEF', '#F3F3F3', '#FFFFFF',
+    '#980000', '#FF0000', '#FF9900', '#FFFF00', '#00FF00', '#00FFFF', '#4A86E8', '#0000FF', '#9900FF', '#FF00FF',
+    '#E6B8AF', '#F4CCCC', '#FCE5CD', '#FFF2CC', '#D9EAD3', '#D0E0E3', '#C9DAF8', '#CFE2F3', '#D9D2E9', '#EAD1DC',
+    '#DD7E6B', '#EA9999', '#F9CB9C', '#FFE599', '#B6D7A8', '#A2C4C9', '#A4C2F4', '#9FC5E8', '#B4A7D6', '#D5A6BD',
+    '#CC4125', '#E06666', '#F6B26B', '#FFD966', '#93C47D', '#76A5AF', '#6D9EEB', '#6FA8DC', '#8E7CC3', '#C27BA0',
+    '#A61C00', '#CC0000', '#E69138', '#F1C232', '#6AA84F', '#45818E', '#3C78D8', '#3D85C6', '#674EA7', '#A64D79',
+    '#85200C', '#990000', '#B45F06', '#BF9000', '#38761D', '#134F5C', '#1155CC', '#0B5394', '#351C75', '#741B47',
+    '#5B0F00', '#660000', '#783F04', '#7F6000', '#274E13', '#0C343D', '#1C4587', '#073763', '#20124D', '#4C1130'
+  ];
+
+  // Create popup
+  const popup = document.createElement('div');
+  popup.style.cssText = `
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 1000;
+    display: grid;
+    grid-template-columns: repeat(10, 20px);
+    gap: 4px;
+    width: 240px;
+  `;
+
+  // Position popup below button
+  const rect = button.getBoundingClientRect();
+  popup.style.top = `${rect.bottom + window.scrollY + 4}px`;
+  popup.style.left = `${rect.left + window.scrollX}px`;
+
+  // Add color squares
+  colors.forEach(color => {
+    const square = document.createElement('div');
+    square.style.cssText = `
+      width: 20px;
+      height: 20px;
+      background: ${color};
+      border: 1px solid #ddd;
+      cursor: pointer;
+      border-radius: 2px;
+    `;
+    square.title = color;
+    
+    square.addEventListener('mouseenter', () => {
+      square.style.transform = 'scale(1.2)';
+      square.style.borderColor = '#333';
+    });
+    
+    square.addEventListener('mouseleave', () => {
+      square.style.transform = 'scale(1)';
+      square.style.borderColor = '#ddd';
+    });
+
+    square.addEventListener('click', (e) => {
+      e.stopPropagation();
+      onSelect(color);
+      if (popup.parentNode) {
+        document.body.removeChild(popup);
+      }
+      document.removeEventListener('click', closePopup);
+    });
+
+    popup.appendChild(square);
+  });
+
+  // Close popup when clicking outside
+  const closePopup = (e: MouseEvent) => {
+    if (!popup.contains(e.target as Node) && e.target !== button) {
+      if (popup.parentNode) {
+        document.body.removeChild(popup);
+      }
+      document.removeEventListener('click', closePopup);
+    }
+  };
+
+  setTimeout(() => {
+    document.addEventListener('click', closePopup);
+  }, 10);
+
+  document.body.appendChild(popup);
+}
+
+/**
  * Create default toolbar for the editor
  */
 function createDefaultToolbar(editor: Editor, container: HTMLElement) {
@@ -425,22 +514,22 @@ function createDefaultToolbar(editor: Editor, container: HTMLElement) {
   const colorBtn = new Button({
     icon: icons.color,
     title: 'Text Color',
-    onClick: () => {
-      const color = prompt('Enter color:', 'red');
-      if (color) {
+    onClick: (e) => {
+      e.stopPropagation();
+      showColorPicker(e.currentTarget as HTMLElement, (color) => {
         editor.executeCommand('setTextColor', color);
-      }
+      });
     }
   });
 
   const highlightBtn = new Button({
     icon: icons.highlight,
     title: 'Highlight',
-    onClick: () => {
-      const color = prompt('Enter highlight color:', 'yellow');
-      if (color) {
+    onClick: (e) => {
+      e.stopPropagation();
+      showColorPicker(e.currentTarget as HTMLElement, (color) => {
         editor.executeCommand('setHighlight', color);
-      }
+      });
     }
   });
 
