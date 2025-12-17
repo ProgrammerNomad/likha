@@ -191,22 +191,40 @@ export const likhaSchema: Schema = new Schema({
         return ['img', attrs];
       }
     }),
-  marks: basicSchema.spec.marks.update('link', {
-    attrs: {
-      href: {},
-      title: { default: null }
-    },
-    inclusive: false,
-    parseDOM: [{
-      tag: 'a[href]',
-      getAttrs: (dom: any) => ({
-        href: dom.getAttribute('href'),
-        title: dom.getAttribute('title')
-      })
-    }],
-    toDOM: (node) => ['a', {
-      href: node.attrs.href,
-      title: node.attrs.title
-    }, 0]
-  }),
+  marks: basicSchema.spec.marks
+    .update('link', {
+      attrs: {
+        href: {},
+        title: { default: null }
+      },
+      inclusive: false,
+      parseDOM: [{
+        tag: 'a[href]',
+        getAttrs: (dom: any) => ({
+          href: dom.getAttribute('href'),
+          title: dom.getAttribute('title')
+        })
+      }],
+      toDOM: (node) => ['a', {
+        href: node.attrs.href,
+        title: node.attrs.title
+      }, 0]
+    })
+    .addToEnd('textColor', {
+      attrs: {
+        color: { default: null }
+      },
+      parseDOM: [{
+        tag: 'span[style*="color"]',
+        getAttrs(dom) {
+          const element = dom as HTMLElement;
+          const color = element.style.color;
+          return color ? { color } : false;
+        }
+      }],
+      toDOM(node) {
+        const { color } = node.attrs;
+        return ['span', { style: `color: ${color}` }, 0];
+      }
+    }),
 });

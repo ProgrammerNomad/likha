@@ -10,3 +10,4 @@ export { CodeBlockPlugin } from './code-block';
 export { TextAlignmentPlugin } from './text-alignment';
 export { TablePlugin } from './table';
 export { ImagePlugin } from './image';
+export { TextColorPlugin } from './text-color';

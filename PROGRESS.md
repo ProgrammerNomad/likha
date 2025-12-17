@@ -1,9 +1,19 @@
 ﻿# Likha Editor - Progress Update
 
-## Current Status (Phase 4 - 83% Complete)
+## Current Status (Phase 4 - 92% Complete)
 
 ### Latest Completions ✅
-1. **ImagePlugin** - Image insertion and manipulation ✨ NEW
+1. **TextColorPlugin** - Text color formatting ✨ NEW
+   - `setTextColor(color)` - Set text color with named colors, hex, rgb, or rgba
+   - `removeTextColor()` - Remove color formatting from selection
+   - `getTextColor()` - Get current text color at cursor
+   - `isTextColorActive(color?)` - Check if color is active (optional specific color check)
+   - 20 comprehensive tests covering all color formats and edge cases
+   - Support for named colors (red, blue, etc.), hex (#ff5733), rgb/rgba
+   - Preserves other formatting when adding color
+   - Inline span with style attribute for HTML output
+
+2. **ImagePlugin** - Image insertion and manipulation
    - `insertImage(src, alt?, title?)` - Insert images with optional alt text and title
    - `setImageSize(width?, height?)` - Resize images independently or together
    - `getImageSrc()` - Get URL of selected/adjacent image
@@ -61,17 +71,18 @@
    - Supports both absolute and relative URLs
 
 ### Test Coverage 📊
-- **Total Tests:** 229 passing (up from 205)
+- **Total Tests:** 249 passing (up from 229)
   - Core: 5 tests
-  - Plugins: 195 tests (up from 170)
+  - Plugins: 215 tests (up from 195)
   - UI: 30 tests
   - 1 skipped
 - **Plugin Test Breakdown:**
   - TextAlignmentPlugin: 27 tests
   - CodeBlockPlugin: 27 tests
-  - **ImagePlugin: 24 tests** ✨ NEW
+  - ImagePlugin: 24 tests
   - LinkPlugin: 22 tests
-  - HeadingPlugin: 25 tests (up from 21)
+  - **TextColorPlugin: 20 tests** ✨ NEW
+  - HeadingPlugin: 25 tests
   - TablePlugin: 17 tests (NEW ✨)
   - BlockquotePlugin: 13 tests
   - BulletListPlugin: 19 tests (up from 11)
@@ -83,12 +94,12 @@
   - PlaceholderPlugin: 4 tests
 
 ### Bundle Sizes 📦
-- **@likha/core:** 11.51 KB (2.97 KB gzipped)
-- **@likha/plugins:** 108.84 KB (22.72 KB gzipped)
+- **@likha/core:** 11.91 KB (3.06 KB gzipped)
+- **@likha/plugins:** 111.59 KB (23.27 KB gzipped)
 - **@likha/ui:** 11.95 KB (2.96 KB gzipped)
-- **Total:** 132.30 KB uncompressed, 29.65 KB gzipped
+- **Total:** 135.45 KB uncompressed, 30.29 KB gzipped
 
-### Completed Plugins (11/13 Medium+ Priority Plugins) ✅
+### Completed Plugins (12/13 Medium+ Priority Plugins) ✅
 1. HeadingPlugin - H1-H6 with Ctrl+Alt+1-6
 2. BulletListPlugin - Ctrl+Shift+8
 3. OrderedListPlugin - Ctrl+Shift+9
@@ -97,8 +108,13 @@
 6. LinkPlugin - Mod-k 
 7. CodeBlockPlugin - Mod-Alt-c, Shift-Ctrl-\
 8. TextAlignmentPlugin - Mod-Shift-l/e/r/j
-9. **TablePlugin** - Basic table insertion (NEW ✨)
-10. Core marks - Bold, Italic, Code (Ctrl+B, Ctrl+I, Ctrl+`)
+9. TablePlugin - Basic table insertion
+10. **ImagePlugin - Insert, resize, alt text** ✨ NEW
+11. Core marks - Bold, Italic, Code (Ctrl+B, Ctrl+I, Ctrl+`)
+
+### Remaining Medium Priority (2/13)
+- Text color plugin
+- Highlight plugin
 
 ### Keyboard Shortcuts Summary ⌨️
 - **Bold:** Ctrl+B
