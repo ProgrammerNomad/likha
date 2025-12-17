@@ -6,17 +6,21 @@ import { Plugin } from '@likha/core';
  */
 export class PlaceholderPlugin extends Plugin {
   name = 'placeholder';
+  private text: string;
+
+  constructor(config: { text?: string } = {}) {
+    super(config);
+    this.text = config.text || 'Start typing...';
+  }
 
   init(editor: any): void {
     super.init(editor);
-
-    const placeholderText = this.getConfig<string>('text', 'Start typing...');
     
     // Add placeholder CSS
     const style = document.createElement('style');
     style.textContent = `
       .ProseMirror p.is-empty:first-child::before {
-        content: "${placeholderText}";
+        content: "${this.text}";
         color: #aaa;
         pointer-events: none;
         position: absolute;
