@@ -243,6 +243,10 @@ This document outlines the complete development plan for Likha, divided into man
 ### Productivity Features (Week 22)
 - [ ] Implement autocomplete system
 - [ ] Add auto-save functionality
+- [ ] Create collaboration indicators
+- [ ] Build version history interface
+- [ ] Add HTML source view/edit plugin 📝 (toggle between WYSIWYG and HTML code)
+- [ ] Implement find & replace
 - [ ] Create focus mode
 - [ ] Build read-only mode
 - [ ] Add content templates
