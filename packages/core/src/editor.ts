@@ -150,6 +150,13 @@ export class Editor {
     return toggleMark(state.schema.marks.code)(state, dispatch);
   }
 
+  public underline(): boolean {
+    const { state, dispatch } = this.view;
+    const underlineMark = state.schema.marks.underline;
+    if (!underlineMark) return false;
+    return toggleMark(underlineMark)(state, dispatch);
+  }
+
   public undo(): boolean {
     const { state, dispatch } = this.view;
     return undo(state, dispatch);

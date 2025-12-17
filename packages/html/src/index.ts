@@ -14,7 +14,12 @@ import {
   TablePlugin,
   ImagePlugin,
   TextColorPlugin,
-  HighlightPlugin
+  HighlightPlugin,
+  HTMLSourceViewPlugin,
+  StrikethroughPlugin,
+  SubscriptPlugin,
+  SuperscriptPlugin,
+  ClearFormattingPlugin
 } from '@likha/plugins';
 import { Toolbar, Button, Dropdown, injectTheme } from '@likha/ui';
 
@@ -68,7 +73,12 @@ export function createEditor(options: LikhaEditorOptions) {
     'table',
     'image',
     'textColor',
-    'highlight'
+    'highlight',
+    'htmlSourceView',
+    'strikethrough',
+    'subscript',
+    'superscript',
+    'clearFormatting'
   ];
 
   const plugins: Plugin[] = [];
@@ -114,6 +124,21 @@ export function createEditor(options: LikhaEditorOptions) {
   }
   if (enabledPlugins.includes('highlight')) {
     plugins.push(new HighlightPlugin());
+  }
+  if (enabledPlugins.includes('htmlSourceView')) {
+    plugins.push(new HTMLSourceViewPlugin());
+  }
+  if (enabledPlugins.includes('strikethrough')) {
+    plugins.push(new StrikethroughPlugin());
+  }
+  if (enabledPlugins.includes('subscript')) {
+    plugins.push(new SubscriptPlugin());
+  }
+  if (enabledPlugins.includes('superscript')) {
+    plugins.push(new SuperscriptPlugin());
+  }
+  if (enabledPlugins.includes('clearFormatting')) {
+    plugins.push(new ClearFormattingPlugin());
   }
 
   // Create editor
@@ -171,13 +196,29 @@ function createDefaultToolbar(editor: Editor, container: HTMLElement) {
 
   // Icons (inline SVG strings)
   const icons = {
+    undo: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v6h6"></path><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"></path></svg>',
+    redo: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 7v6h-6"></path><path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3l3 2.7"></path></svg>',
     bold: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"></path><path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"></path></svg>',
     italic: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="4" x2="10" y2="4"></line><line x1="14" y1="20" x2="5" y2="20"></line><line x1="15" y1="4" x2="9" y2="20"></line></svg>',
+    underline: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3v7a6 6 0 0 0 6 6 6 6 0 0 0 6-6V3"></path><line x1="4" y1="21" x2="20" y2="21"></line></svg>',
+    strikethrough: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4H9a3 3 0 0 0-2.83 4"></path><path d="M14 12a4 4 0 0 1 0 8H6"></path><line x1="4" y1="12" x2="20" y2="12"></line></svg>',
+    subscript: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m4 5 8 8"></path><path d="m12 5-8 8"></path><path d="M20 19h-4c0-1.5.44-2 1.5-2.5S20 15.33 20 14c0-.47-.17-.93-.48-1.29a2.11 2.11 0 0 0-2.62-.44c-.42.24-.74.62-.9 1.07"></path></svg>',
+    superscript: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m4 19 8-8"></path><path d="m12 19-8-8"></path><path d="M20 9h-4c0-1.5.44-2 1.5-2.5S20 5.33 20 4c0-.47-.17-.93-.48-1.29a2.11 2.11 0 0 0-2.62-.44c-.42.24-.74.62-.9 1.07"></path></svg>',
+    clearFormat: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h16v3"></path><path d="M5 20h6"></path><path d="M13 4 8 20"></path><line x1="22" y1="2" x2="2" y2="22"></line></svg>',
+    link: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>',
+    blockquote: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path></svg>',
     list: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>',
     numbered: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="6" x2="21" y2="6"></line><line x1="10" y1="12" x2="21" y2="12"></line><line x1="10" y1="18" x2="21" y2="18"></line><path d="M4 6h1v4"></path><path d="M4 10h2"></path><path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1"></path></svg>',
+    alignLeft: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="17" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="17" y1="18" x2="3" y2="18"></line></svg>',
+    alignCenter: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="10" x2="6" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="18" y1="18" x2="6" y2="18"></line></svg>',
+    alignRight: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="21" y1="10" x2="7" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="7" y2="18"></line></svg>',
     image: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>',
+    table: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="12" y1="3" x2="12" y2="21"/></svg>',
+    code: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8h12M6 12h12M6 16h12"></path><rect x="3" y="4" width="18" height="16" rx="2"></rect></svg>',
+    hr: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line></svg>',
     color: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20h16"/><path d="M6 16l6-12 6 12"/><path d="M8 12h8"/></svg>',
-    highlight: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 11-6 6v3h9l3-3"/><path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4"/></svg>'
+    highlight: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 11-6 6v3h9l3-3"/><path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4"/></svg>',
+    sourceCode: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>'
   };
 
   // Heading dropdown
@@ -202,25 +243,98 @@ function createDefaultToolbar(editor: Editor, container: HTMLElement) {
   toolbar.addButton(headingDropdown.getElement());
   toolbar.addSeparator();
 
-  // Format buttons
+  // UNDO/REDO GROUP
+  const undoBtn = new Button({
+    icon: icons.undo,
+    title: 'Undo (Ctrl+Z)',
+    onClick: () => editor.undo()
+  });
+
+  const redoBtn = new Button({
+    icon: icons.redo,
+    title: 'Redo (Ctrl+Y)',
+    onClick: () => editor.redo()
+  });
+
+  toolbar.addGroup([undoBtn.getElement(), redoBtn.getElement()]);
+  toolbar.addSeparator();
+
+  // TEXT FORMATTING GROUP (like TinyMCE, CKEditor, Quill)
   const boldBtn = new Button({
     icon: icons.bold,
-    title: 'Bold',
+    title: 'Bold (Ctrl+B)',
     onClick: () => editor.bold(),
     isActive: () => editor.isActive('bold')
   });
 
   const italicBtn = new Button({
     icon: icons.italic,
-    title: 'Italic',
+    title: 'Italic (Ctrl+I)',
     onClick: () => editor.italic(),
     isActive: () => editor.isActive('italic')
   });
 
-  toolbar.addGroup([boldBtn.getElement(), italicBtn.getElement()]);
+  const underlineBtn = new Button({
+    icon: icons.underline,
+    title: 'Underline (Ctrl+U)',
+    onClick: () => editor.underline(),
+    isActive: () => editor.isActive('underline')
+  });
+
+  const strikethroughBtn = new Button({
+    icon: icons.strikethrough,
+    title: 'Strikethrough',
+    onClick: () => editor.executeCommand('toggleStrikethrough'),
+    isActive: () => editor.isActive('strikethrough')
+  });
+
+  const subscriptBtn = new Button({
+    icon: icons.subscript,
+    title: 'Subscript',
+    onClick: () => editor.executeCommand('toggleSubscript'),
+    isActive: () => editor.isActive('subscript')
+  });
+
+  const superscriptBtn = new Button({
+    icon: icons.superscript,
+    title: 'Superscript',
+    onClick: () => editor.executeCommand('toggleSuperscript'),
+    isActive: () => editor.isActive('superscript')
+  });
+
+  const clearFormatBtn = new Button({
+    icon: icons.clearFormat,
+    title: 'Clear Formatting',
+    onClick: () => editor.executeCommand('clearFormat')
+  });
+
+  toolbar.addGroup([
+    boldBtn.getElement(), 
+    italicBtn.getElement(), 
+    underlineBtn.getElement(),
+    strikethroughBtn.getElement(),
+    subscriptBtn.getElement(),
+    superscriptBtn.getElement(),
+    clearFormatBtn.getElement()
+  ]);
   toolbar.addSeparator();
 
-  // List buttons
+  // LINK BUTTON (CRITICAL - every editor has this)
+  const linkBtn = new Button({
+    icon: icons.link,
+    title: 'Insert Link (Ctrl+K)',
+    onClick: () => {
+      const url = prompt('Enter link URL:', 'https://');
+      if (url) {
+        editor.executeCommand('setLink', url);
+      }
+    }
+  });
+
+  toolbar.addButton(linkBtn.getElement());
+  toolbar.addSeparator();
+
+  // LIST GROUP
   const bulletBtn = new Button({
     icon: icons.list,
     title: 'Bullet List',
@@ -236,7 +350,39 @@ function createDefaultToolbar(editor: Editor, container: HTMLElement) {
   toolbar.addGroup([bulletBtn.getElement(), numberedBtn.getElement()]);
   toolbar.addSeparator();
 
-  // Image button
+  // BLOCKQUOTE
+  const blockquoteBtn = new Button({
+    icon: icons.blockquote,
+    title: 'Blockquote',
+    onClick: () => editor.executeCommand('toggleBlockquote')
+  });
+
+  toolbar.addButton(blockquoteBtn.getElement());
+  toolbar.addSeparator();
+
+  // TEXT ALIGNMENT GROUP
+  const alignLeftBtn = new Button({
+    icon: icons.alignLeft,
+    title: 'Align Left',
+    onClick: () => editor.executeCommand('setTextAlign', 'left')
+  });
+
+  const alignCenterBtn = new Button({
+    icon: icons.alignCenter,
+    title: 'Align Center',
+    onClick: () => editor.executeCommand('setTextAlign', 'center')
+  });
+
+  const alignRightBtn = new Button({
+    icon: icons.alignRight,
+    title: 'Align Right',
+    onClick: () => editor.executeCommand('setTextAlign', 'right')
+  });
+
+  toolbar.addGroup([alignLeftBtn.getElement(), alignCenterBtn.getElement(), alignRightBtn.getElement()]);
+  toolbar.addSeparator();
+
+  // INSERT GROUP (Image, Table, HR)
   const imageBtn = new Button({
     icon: icons.image,
     title: 'Insert Image',
@@ -248,7 +394,34 @@ function createDefaultToolbar(editor: Editor, container: HTMLElement) {
     }
   });
 
-  // Color buttons
+  const tableBtn = new Button({
+    icon: icons.table,
+    title: 'Insert Table',
+    onClick: () => {
+      editor.executeCommand('insertTable', { rows: 3, cols: 3 });
+    }
+  });
+
+  const hrBtn = new Button({
+    icon: icons.hr,
+    title: 'Insert Horizontal Rule',
+    onClick: () => {
+      editor.executeCommand('insertHorizontalRule');
+    }
+  });
+
+  toolbar.addGroup([imageBtn.getElement(), tableBtn.getElement(), hrBtn.getElement()]);
+  toolbar.addSeparator();
+
+  // ADVANCED GROUP (Code, Colors, Source)
+  const codeBtn = new Button({
+    icon: icons.code,
+    title: 'Code Block',
+    onClick: () => {
+      editor.executeCommand('toggleCodeBlock');
+    }
+  });
+
   const colorBtn = new Button({
     icon: icons.color,
     title: 'Text Color',
@@ -271,7 +444,19 @@ function createDefaultToolbar(editor: Editor, container: HTMLElement) {
     }
   });
 
-  toolbar.addGroup([imageBtn.getElement(), colorBtn.getElement(), highlightBtn.getElement()]);
+  const sourceViewBtn = new Button({
+    icon: icons.sourceCode,
+    title: 'HTML Source View',
+    onClick: () => {
+      editor.executeCommand('toggleSourceView');
+    },
+    isActive: () => editor.executeCommand('isSourceViewActive') as boolean
+  });
+
+  toolbar.addGroup([codeBtn.getElement(), colorBtn.getElement(), highlightBtn.getElement()]);
+  toolbar.addSeparator();
+  
+  toolbar.addButton(sourceViewBtn.getElement());
 
   return toolbar;
 }

@@ -250,5 +250,27 @@ export const likhaSchema: Schema = new Schema({
         const { color } = node.attrs;
         return ['mark', { style: `background-color: ${color}` }, 0];
       }
+    })
+    .addToEnd('strikethrough', {
+      parseDOM: [
+        { tag: 's' },
+        { tag: 'del' },
+        { tag: 'strike' },
+        { 
+          style: 'text-decoration',
+          getAttrs: (value: any) => value === 'line-through' && null
+        }
+      ],
+      toDOM: () => ['s', 0]
+    })
+    .addToEnd('subscript', {
+      excludes: 'superscript',
+      parseDOM: [{ tag: 'sub' }],
+      toDOM: () => ['sub', 0]
+    })
+    .addToEnd('superscript', {
+      excludes: 'subscript',
+      parseDOM: [{ tag: 'sup' }],
+      toDOM: () => ['sup', 0]
     }),
 });

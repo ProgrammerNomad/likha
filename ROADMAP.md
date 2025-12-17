@@ -150,15 +150,16 @@ This document outlines the complete development plan for Likha, divided into man
 - [x] Highlight plugin ✅
 
 #### Advanced Plugins (Week 16)
+- [ ] Strikethrough mark plugin (like Medium editor)
+- [ ] Subscript/Superscript mark plugins (for scientific notation)
 - [ ] Slash command plugin
 - [ ] Emoji picker plugin
 - [ ] Mention plugin (@user)
-- [ ] Character count plugin
-- [ ] Find and replace plugin
+- [ ] Character count plugin (already exists, needs toolbar integration)
 
 ### Deliverables
 - ✅ @likha/plugins package (114.07 KB, 23.73 KB gzipped)
-- ✅ 13/13 medium+ priority plugins COMPLETE!
+- ✅ 14/14 medium+ priority plugins COMPLETE!
   - ✅ PlaceholderPlugin (4 tests)
   - ✅ CharacterCountPlugin (4 tests)
   - ✅ HeadingPlugin (25 tests)
@@ -173,14 +174,11 @@ This document outlines the complete development plan for Likha, divided into man
   - ✅ ImagePlugin (24 tests)
   - ✅ TextColorPlugin (20 tests)
   - ✅ HighlightPlugin (25 tests)
+  - ✅ HTMLSourceViewPlugin (created, not tested yet)
 - ✅ 274 total tests passing (240 plugin tests + 5 core + 30 UI - 1 skipped)
 - ✅ Test coverage: >85% for plugins, >90% for core
-  - ✅ HeadingPlugin
-  - ✅ BulletListPlugin
-  - ✅ OrderedListPlugin
-  - ✅ BlockquotePlugin
-  - ✅ HorizontalRulePlugin
 - ⏳ Plugin documentation (pending)
+- ⏳ Strikethrough, Subscript, Superscript plugins (planned)
 
 ---
 
@@ -194,6 +192,10 @@ This document outlines the complete development plan for Likha, divided into man
 - [x] Add CDN build configuration (UMD 81.6 KB gzipped)
 - [x] Create initialization helpers (plugin loading, toolbar)
 - [x] Write usage examples (cdn-demo.html)
+- [x] Add comprehensive default toolbar (18 controls: heading, bold, italic, underline, link, lists, blockquote, alignment, image, table, HR, code, colors)
+- [ ] Add Undo/Redo toolbar buttons (functionality exists, needs UI)
+- [ ] Add Clear Formatting toolbar button
+- [ ] Add HTML Source View toggle button (plugin exists, needs toolbar integration)
 - [ ] Test in different browsers
 - [ ] Documentation (VitePress in /docs)
 
@@ -245,8 +247,10 @@ This document outlines the complete development plan for Likha, divided into man
 - [ ] Add auto-save functionality
 - [ ] Create collaboration indicators
 - [ ] Build version history interface
-- [ ] Add HTML source view/edit plugin 📝 (toggle between WYSIWYG and HTML code)
-- [ ] Implement find & replace
+- [ ] Implement find & replace (toolbar button + modal dialog)
+- [ ] Add Font Family dropdown (common fonts: Arial, Times, Courier, etc.)
+- [ ] Add Font Size dropdown (8pt to 72pt)
+- [ ] Add Indent/Outdent toolbar buttons (for nested lists and paragraphs)
 - [ ] Create focus mode
 - [ ] Build read-only mode
 - [ ] Add content templates
