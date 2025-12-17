@@ -226,5 +226,29 @@ export const likhaSchema: Schema = new Schema({
         const { color } = node.attrs;
         return ['span', { style: `color: ${color}` }, 0];
       }
+    })
+    .addToEnd('highlight', {
+      attrs: {
+        color: { default: null }
+      },
+      parseDOM: [{
+        tag: 'mark',
+        getAttrs(dom) {
+          const element = dom as HTMLElement;
+          const color = element.style.backgroundColor;
+          return color ? { color } : { color: 'yellow' };
+        }
+      }, {
+        tag: 'span[style*="background-color"]',
+        getAttrs(dom) {
+          const element = dom as HTMLElement;
+          const color = element.style.backgroundColor;
+          return color ? { color } : false;
+        }
+      }],
+      toDOM(node) {
+        const { color } = node.attrs;
+        return ['mark', { style: `background-color: ${color}` }, 0];
+      }
     }),
 });
