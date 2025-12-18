@@ -32,6 +32,14 @@ export default defineConfig({
             { text: 'Configuration', link: '/guide/configuration' },
             { text: 'Toolbar', link: '/guide/toolbar' }
           ]
+        },
+        {
+          text: 'Framework Integration',
+          items: [
+            { text: 'React', link: '/guide/react' },
+            { text: 'Laravel', link: '/guide/laravel' },
+            { text: 'Livewire', link: '/guide/livewire' }
+          ]
         }
       ],
       '/api/': [
