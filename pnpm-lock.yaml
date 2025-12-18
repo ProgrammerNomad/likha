@@ -90,14 +90,14 @@ importers:
 
   packages/html:
     dependencies:
-      '@likha/core':
-        specifier: workspace:*
+      '@nomadprogrammer/likha-core':
+        specifier: ^0.0.1
         version: link:../core
-      '@likha/plugins':
-        specifier: workspace:*
+      '@nomadprogrammer/likha-plugins':
+        specifier: ^0.0.1
         version: link:../plugins
-      '@likha/ui':
-        specifier: workspace:*
+      '@nomadprogrammer/likha-ui':
+        specifier: ^0.0.1
         version: link:../ui
       prosemirror-commands:
         specifier: ^1.5.2
@@ -139,8 +139,8 @@ importers:
 
   packages/plugins:
     dependencies:
-      '@likha/core':
-        specifier: workspace:*
+      '@nomadprogrammer/likha-core':
+        specifier: ^0.0.1
         version: link:../core
       prosemirror-commands:
         specifier: ^1.5.2
@@ -173,8 +173,8 @@ importers:
 
   packages/ui:
     dependencies:
-      '@likha/core':
-        specifier: workspace:*
+      '@nomadprogrammer/likha-core':
+        specifier: ^0.0.1
         version: link:../core
       lucide:
         specifier: ^0.294.0
