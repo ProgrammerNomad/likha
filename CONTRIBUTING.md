@@ -441,7 +441,7 @@ describe('MyPlugin', () => {
 
 ## Getting Help
 
-- Check [documentation](https://docs.likha.dev)
+- Check [documentation](https://likha-doc.netlify.app/)
 - Search [existing issues](https://github.com/ProgrammerNomad/likha/issues)
 - Ask in [GitHub Discussions](https://github.com/ProgrammerNomad/likha/discussions)
 - Reach out to maintainers

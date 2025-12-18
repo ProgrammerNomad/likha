@@ -36,7 +36,9 @@ const editor = new Editor({
 
 ## Documentation
 
-Full documentation: https://github.com/ProgrammerNomad/likha
+Full documentation: https://likha-doc.netlify.app/
+
+API Reference: https://likha-doc.netlify.app/api/plugins
 
 ## License
 

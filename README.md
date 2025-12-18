@@ -9,7 +9,7 @@
 
 Likha is a completely free, open-source, self-hosted, framework-agnostic rich text editor built for developers who demand flexibility without vendor lock-in. Run it anywhere: static HTML, Laravel, Livewire, React, Next.js, and more. Likha comes from the Hindi word "लिखा", meaning "written".
 
-[Demo](https://likha-demo.example.com) | [Documentation](https://docs.likha.dev) | [Examples](./examples) | [Plugins](./packages/plugins)
+[Documentation](https://likha-doc.netlify.app/) | [Examples](https://likha-doc.netlify.app/examples/) | [API Reference](https://likha-doc.netlify.app/api/core) | [Plugins](https://likha-doc.netlify.app/api/plugins)
 
 ## Why Likha
 
@@ -358,7 +358,7 @@ Likha targets modern evergreen browsers (Chrome, Firefox, Safari, Edge). IE11 is
 
 ### How can I get help?
 
-Check the [documentation](https://docs.likha.dev), browse [examples](./examples), open an [issue](https://github.com/ProgrammerNomad/likha/issues), or join our community discussions.
+Check the [documentation](https://likha-doc.netlify.app/), browse [examples](https://likha-doc.netlify.app/examples/), open an [issue](https://github.com/ProgrammerNomad/likha/issues), or join our community discussions.
 
 ## Community and Support
 

@@ -81,7 +81,11 @@ createEditor({
 
 ## Documentation
 
-Full documentation: https://github.com/ProgrammerNomad/likha
+Full documentation: https://likha-doc.netlify.app/
+
+Getting Started: https://likha-doc.netlify.app/guide/getting-started
+
+API Reference: https://likha-doc.netlify.app/api/html
 
 ## License
 
