@@ -3,385 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Likha Editor - Live Demo</title>
+  <title>Likha Editor - Demo</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      padding: 2rem;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 20px;
       background: #f5f5f5;
     }
-
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .header {
+    
+    h1 {
       text-align: center;
-      margin-bottom: 2rem;
+      color: #333;
+      margin-bottom: 30px;
     }
-
-    .header h1 {
-      font-size: 2.5rem;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 0.5rem;
-    }
-
-    .header p {
-      color: #666;
-      font-size: 1.125rem;
-    }
-
-    .editor-card {
+    
+    .editor-wrapper {
       background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       overflow: hidden;
-      margin-bottom: 2rem;
     }
-
-    .toolbar {
-      padding: 0.75rem 1rem;
-      background: #fafafa;
-      border-bottom: 1px solid #e0e0e0;
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
+    
+    #toolbar {
+      border-bottom: 1px solid #ddd;
     }
-
-    .toolbar button {
-      padding: 0.5rem 0.75rem;
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.875rem;
-      font-weight: 500;
-      transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-
-    .toolbar button:hover {
-      background: #f0f0f0;
-      border-color: #667eea;
-    }
-
-    .toolbar button:active {
-      transform: scale(0.98);
-    }
-
+    
     #editor {
       min-height: 400px;
-      padding: 1.5rem;
-      outline: none;
-    }
-
-    .ProseMirror {
-      outline: none;
-      line-height: 1.6;
-    }
-
-    .ProseMirror p {
-      margin-bottom: 1rem;
-    }
-
-    .ProseMirror p:last-child {
-      margin-bottom: 0;
-    }
-
-    .ProseMirror h1,
-    .ProseMirror h2,
-    .ProseMirror h3 {
-      font-weight: 600;
-      margin-bottom: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .ProseMirror h1 { font-size: 2rem; }
-    .ProseMirror h2 { font-size: 1.5rem; }
-    .ProseMirror h3 { font-size: 1.25rem; }
-
-    .ProseMirror ul,
-    .ProseMirror ol {
-      padding-left: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .ProseMirror li {
-      margin-bottom: 0.5rem;
-    }
-
-    .ProseMirror strong {
-      font-weight: 600;
-    }
-
-    .ProseMirror em {
-      font-style: italic;
-    }
-
-    .ProseMirror code {
-      background: #f5f5f5;
-      padding: 0.2rem 0.4rem;
-      border-radius: 3px;
-      font-family: 'Courier New', monospace;
-      font-size: 0.9em;
-    }
-
-    .controls {
-      padding: 1rem 1.5rem;
-      background: #f9f9f9;
-      border-top: 1px solid #e0e0e0;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .controls button {
-      padding: 0.625rem 1.25rem;
-      background: #667eea;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.875rem;
-      font-weight: 500;
-      transition: background 0.2s;
-    }
-
-    .controls button:hover {
-      background: #5568d3;
-    }
-
-    .output-section {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-      padding: 1.5rem;
-      display: none;
-    }
-
-    .output-section.visible {
-      display: block;
-    }
-
-    .output-section h3 {
-      font-size: 1rem;
-      margin-bottom: 1rem;
-      color: #333;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .output-section pre {
-      background: #2d2d2d;
-      color: #f8f8f2;
-      padding: 1.5rem;
-      border-radius: 8px;
-      overflow-x: auto;
-      font-size: 0.875rem;
-      line-height: 1.5;
-    }
-
-    .stats {
-      display: flex;
-      gap: 2rem;
-      padding: 1rem 1.5rem;
-      background: #f0f4ff;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-    }
-
-    .stat {
-      text-align: center;
-    }
-
-    .stat-value {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #667eea;
-    }
-
-    .stat-label {
-      font-size: 0.75rem;
-      color: #666;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .toast {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      background: #4CAF50;
-      color: white;
-      padding: 1rem 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      transform: translateY(150%);
-      transition: transform 0.3s;
-    }
-
-    .toast.show {
-      transform: translateY(0);
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>Likha Editor</h1>
-      <p>Open-source, self-hosted, framework-agnostic rich text editor</p>
-    </div>
-
-    <div class="stats">
-      <div class="stat">
-        <div class="stat-value" id="char-count">0</div>
-        <div class="stat-label">Characters</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value" id="word-count">0</div>
-        <div class="stat-label">Words</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">5 / 5</div>
-        <div class="stat-label">Tests Passing</div>
-      </div>
-    </div>
-
-    <div class="editor-card">
-      <div class="toolbar">
-        <button onclick="execCommand('bold')" title="Bold (Ctrl+B)">
-          <strong>B</strong> Bold
-        </button>
-        <button onclick="execCommand('italic')" title="Italic (Ctrl+I)">
-          <em>I</em> Italic
-        </button>
-        <button onclick="execCommand('undo')" title="Undo (Ctrl+Z)">
-          ↶ Undo
-        </button>
-        <button onclick="execCommand('redo')" title="Redo (Ctrl+Y)">
-          ↷ Redo
-        </button>
-      </div>
-
-      <div id="editor"></div>
-
-      <div class="controls">
-        <button onclick="getContent()">📄 Get HTML</button>
-        <button onclick="setSampleContent()">✨ Load Sample</button>
-        <button onclick="clearContent()">🗑️ Clear</button>
-        <button onclick="focusEditor()">🎯 Focus Editor</button>
-      </div>
-    </div>
-
-    <div class="output-section" id="output">
-      <h3>📋 HTML Output</h3>
-      <pre id="html-output"></pre>
-    </div>
+  <h1>🎨 Likha Editor</h1>
+  
+  <div class="editor-wrapper">
+    <div id="toolbar"></div>
+    <div id="editor"></div>
   </div>
 
-  <div class="toast" id="toast">Action completed!</div>
-
-  <script type="module">
-    // Import using our built package
-    import { Editor } from '@likha/core';
-    import { PlaceholderPlugin, CharacterCountPlugin } from '@likha/plugins';
-
-    // Initialize editor with plugins
-    const editor = new Editor({
+  <script src="./likha-editor.umd.js"></script>
+  <script>
+    const { createEditor } = LikhaEditor;
+    
+    createEditor({
       element: document.getElementById('editor'),
-      content: '',
-      plugins: [
-        new PlaceholderPlugin({ text: 'Type something amazing...' }),
-        new CharacterCountPlugin({ target: '#char-count' })
-      ]
+      toolbarContainer: document.getElementById('toolbar'),
+      content: '<h1>Welcome to Likha! 🎉</h1><p>This is a <strong>fully-featured</strong> rich text editor. Try the toolbar buttons above!</p>'
     });
-
-    // Make editor available globally
-    window.likhaEditor = editor;
-
-    // Helper functions
-    function updateStats() {
-      const html = editor.getHTML();
-      const text = html.replace(/<[^>]*>/g, '');
-      document.getElementById('char-count').textContent = text.length;
-      document.getElementById('word-count').textContent = text.trim() ? text.trim().split(/\s+/).length : 0;
-    }
-
-    function showToast(message) {
-      const toast = document.getElementById('toast');
-      toast.textContent = message;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2000);
-    }
-
-    window.execCommand = (command) => {
-      let result = false;
-      
-      switch(command) {
-        case 'bold':
-          result = editor.bold();
-          break;
-        case 'italic':
-          result = editor.italic();
-          break;
-        case 'undo':
-          result = editor.undo();
-          break;
-        case 'redo':
-          result = editor.redo();
-          break;
-      }
-      
-      if (result) {
-        editor.focus();
-        showToast(`${command.charAt(0).toUpperCase() + command.slice(1)} applied!`);
-      }
-    };
-
-    window.getContent = () => {
-      const html = editor.getHTML();
-      document.getElementById('html-output').textContent = html;
-      document.getElementById('output').classList.add('visible');
-      showToast('HTML copied to output!');
-    };
-
-    window.setSampleContent = () => {
-      const sampleHTML = '<h1>Welcome to Likha</h1><p>This is a <strong>sample document</strong> with <em>formatting</em>.</p><h2>Features</h2><ul><li>Rich text editing</li><li>Keyboard shortcuts</li><li>Undo/Redo support</li><li>Clean HTML output</li></ul><p>Built with ❤️ using ProseMirror</p>';
-      
-      editor.setContent(sampleHTML);
-      updateStats();
-      showToast('Sample content loaded!');
-    };
-
-    window.clearContent = () => {
-      editor.setContent('<p></p>');
-      document.getElementById('output').classList.remove('visible');
-      updateStats();
-      showToast('Content cleared!');
-    };
-
-    window.focusEditor = () => {
-      editor.focus();
-      showToast('Editor focused!');
-    };
-
-    // Initial stats
-    updateStats();
-
-    // Update stats on input
-    setInterval(updateStats, 1000);
   </script>
 </body>
 </html>
