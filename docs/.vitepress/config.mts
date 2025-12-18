@@ -5,6 +5,8 @@ export default defineConfig({
   title: 'Likha Editor',
   description: 'Modern, framework-agnostic rich text editor built on ProseMirror',
   
+  ignoreDeadLinks: true,
+  
   themeConfig: {
     logo: { src: '/logo.svg', alt: 'Likha' },
     siteTitle: false,
