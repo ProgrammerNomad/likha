@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Likha Editor Demo</title>
+  <title>LikhaEditor Demo</title>
 </head>
 <body>
   <div id="toolbar"></div>

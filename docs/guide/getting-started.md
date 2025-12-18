@@ -1,10 +1,10 @@
 # Getting Started
 
-Welcome to Likha Editor! This guide will help you get started with the editor.
+Welcome to LikhaEditor! This guide will help you get started with the editor.
 
-## What is Likha?
+## What is LikhaEditor?
 
-Likha is a modern, framework-agnostic rich text editor built on top of ProseMirror. It provides a simple API while maintaining powerful extensibility through plugins.
+LikhaEditor is a modern, framework-agnostic rich text editor built on top of ProseMirror. It provides a simple API while maintaining powerful extensibility through plugins.
 
 ## Key Features
 

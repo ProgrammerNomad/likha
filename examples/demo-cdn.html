@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LikhaEditor Demo - CDN Test</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@likhaeditor/likhaeditor/dist/likha-editor.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .status {
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+    .status.loading {
+      background: #fff3cd;
+      color: #856404;
+    }
+    .status.success {
+      background: #d4edda;
+      color: #155724;
+    }
+    .status.error {
+      background: #f8d7da;
+      color: #721c24;
+    }
+    #toolbar-container {
+      margin-bottom: 10px;
+    }
+    #editor {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      min-height: 400px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .info {
+      margin-top: 20px;
+      padding: 15px;
+      background: white;
+      border-radius: 4px;
+      border-left: 4px solid #007bff;
+    }
+    .info h3 {
+      margin-top: 0;
+      color: #007bff;
+    }
+    .info code {
+      background: #f8f9fa;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎨 LikhaEditor Demo</h1>
+  <div id="status" class="status loading">⏳ Loading editor from CDN...</div>
+  
+  <div id="toolbar-container"></div>
+  <div id="editor"></div>
+
+  <div class="info">
+    <h3>📦 Package Information</h3>
+    <p><strong>Organization:</strong> <code>@likhaeditor</code></p>
+    <p><strong>Main Package:</strong> <code>@likhaeditor/likhaeditor</code></p>
+    <p><strong>Version:</strong> <code>0.0.1</code></p>
+    <p><strong>CDN:</strong> jsDelivr</p>
+    <p><strong>Global Namespace:</strong> <code>window.LikhaEditor</code></p>
+  </div>
+
+  <!-- Load local build for testing -->
+  <link rel="stylesheet" href="../packages/html/dist/likha-editor.css">
+  <script src="../packages/html/dist/likha-editor.umd.js"></script>
+  
+  <script>
+    const statusEl = document.getElementById('status');
+    
+    try {
+      // Check if LikhaEditor is loaded
+      if (typeof LikhaEditor === 'undefined') {
+        throw new Error('LikhaEditor not loaded - check console for errors');
+      }
+
+      statusEl.textContent = '✅ LikhaEditor loaded! Initializing editor with toolbar...';
+      statusEl.className = 'status success';
+
+      // Initialize editor with toolbar
+      const { editor, toolbar } = LikhaEditor.createEditor({
+        element: document.getElementById('editor'),
+        content: '<h1>Welcome to LikhaEditor! 🎉</h1><p>This is a <strong>CDN-based demo</strong> of the rebranded editor.</p><p>Try the toolbar buttons above to format text, add images, tables, and more!</p><ul><li>Bullet lists work</li><li>Numbered lists too</li></ul><p>Package: <code>@likhaeditor/likhaeditor</code></p>',
+        toolbar: true,
+        toolbarContainer: '#toolbar-container'
+      });
+
+      console.log('✅ Editor initialized:', editor);
+      console.log('✅ Toolbar initialized:', toolbar);
+      
+    } catch (error) {
+      statusEl.textContent = '❌ Error: ' + error.message;
+      statusEl.className = 'status error';
+      console.error('Error initializing editor:', error);
+    }
+  </script>
+</body>
+</html>

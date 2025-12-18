@@ -10,7 +10,7 @@ export default defineConfig({
       fileName: (format) => `index.${format === 'es' ? 'js' : 'cjs'}`,
     },
     rollupOptions: {
-      external: ['@likha/core', 'lucide'],
+      external: ['@likhaeditor/core', 'lucide'],
     },
     cssCodeSplit: false,
     sourcemap: true,

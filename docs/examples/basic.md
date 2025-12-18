@@ -1,6 +1,6 @@
 # Basic Editor
 
-The simplest possible Likha Editor setup.
+The simplest possible LikhaEditor setup.
 
 ::: tip Live Demo
 Copy the code below and open it in your browser to see a working demo.
@@ -15,7 +15,7 @@ Copy the code below and open it in your browser to see a working demo.
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Likha Editor - Basic Example</title>
+  <title>LikhaEditor - Basic Example</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@likhaeditor/likhaeditor/dist/likha-editor.css">
 </head>
 <body>

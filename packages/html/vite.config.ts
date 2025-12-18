@@ -4,9 +4,9 @@ import path from 'path';
 export default defineConfig({
   resolve: {
     alias: {
-      '@likha/core': path.resolve(__dirname, '../core/src/index.ts'),
-      '@likha/plugins': path.resolve(__dirname, '../plugins/src/index.ts'),
-      '@likha/ui': path.resolve(__dirname, '../ui/src/index.ts')
+      '@likhaeditor/core': path.resolve(__dirname, '../core/src/index.ts'),
+      '@likhaeditor/plugins': path.resolve(__dirname, '../plugins/src/index.ts'),
+      '@likhaeditor/ui': path.resolve(__dirname, '../ui/src/index.ts')
     },
     dedupe: [
       'prosemirror-model',

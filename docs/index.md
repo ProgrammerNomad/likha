@@ -2,12 +2,12 @@
 layout: home
 
 hero:
-  name: 'Likha Editor'
+  name: 'LikhaEditor'
   text: 'Modern Rich Text Editor'
   tagline: 'Framework-agnostic, self-hosted, built on ProseMirror. Works everywhere - from vanilla HTML to React, Laravel & Livewire.'
   image:
     src: /logo.svg
-    alt: Likha Editor
+    alt: LikhaEditor
   actions:
     - theme: brand
       text: Get Started
@@ -55,9 +55,9 @@ features:
     details: Light and dark themes built-in, fully customizable
 ---
 
-## What is Likha?
+## What is LikhaEditor?
 
-Likha is a **modern, framework-agnostic rich text editor** built on ProseMirror. It's designed to be lightweight, self-hosted, and easy to integrate into any web project.
+LikhaEditor is a **modern, framework-agnostic rich text editor** built on ProseMirror. It's designed to be lightweight, self-hosted, and easy to integrate into any web project.
 
 ### Key Features
 
@@ -70,10 +70,10 @@ Likha is a **modern, framework-agnostic rich text editor** built on ProseMirror.
 
 ## Quick Links
 
-- [Getting Started](./getting-started.md)
-- [Installation](./installation.md)
-- [API Reference](./api/README.md)
-- [Plugins](./plugins/README.md)
+- [Getting Started](/guide/getting-started)
+- [Installation](/guide/installation)
+- [API Reference](/api/core)
+- [Plugins](/plugins/)
 - [GitHub Repository](https://github.com/ProgrammerNomad/likhaeditor)
 
 ## Current Status
@@ -83,7 +83,7 @@ Likha is a **modern, framework-agnostic rich text editor** built on ProseMirror.
 
 ### NPM Packages
 
-All packages are available on npm under the `@nomadprogrammer` scope:
+All packages are available on npm under the `@likhaeditor` scope:
 
 | Package | npm | Description | Status |
 |---------|-----|-------------|--------|
@@ -98,6 +98,7 @@ All packages are available on npm under the `@nomadprogrammer` scope:
 **Installation:**
 ```bash
 npm install @likhaeditor/likhaeditor
+```
 
 ## Browser Support
 

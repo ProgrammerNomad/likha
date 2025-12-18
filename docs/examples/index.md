@@ -1,6 +1,6 @@
 # Examples
 
-Live examples demonstrating Likha Editor usage.
+Live examples demonstrating LikhaEditor usage.
 
 ## Basic Editor
 

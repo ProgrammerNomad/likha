@@ -4,7 +4,7 @@ The `@likhaeditor/likhaeditor` package provides a simple wrapper for using Likha
 
 ## createEditor()
 
-Creates and initializes a Likha editor instance.
+Creates and initializes a LikhaEditor instance.
 
 ```typescript
 import { createEditor } from '@likhaeditor/likhaeditor';

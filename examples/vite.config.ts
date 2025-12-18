@@ -5,9 +5,9 @@ export default defineConfig({
   root: './',
   resolve: {
     alias: {
-      '@likha/core': resolve(__dirname, '../packages/core/src/index.ts'),
-      '@likha/ui': resolve(__dirname, '../packages/ui/src/index.ts'),
-      '@likha/plugins': resolve(__dirname, '../packages/plugins/src/index.ts'),
+      '@likhaeditor/core': resolve(__dirname, '../packages/core/src/index.ts'),
+      '@likhaeditor/ui': resolve(__dirname, '../packages/ui/src/index.ts'),
+      '@likhaeditor/plugins': resolve(__dirname, '../packages/plugins/src/index.ts'),
     },
   },
   server: {

@@ -1,6 +1,6 @@
 # Form Integration
 
-Use Likha Editor with HTML forms for seamless data submission.
+Use LikhaEditor with HTML forms for seamless data submission.
 
 ::: tip Live Demo
 Copy the code below and save as an HTML file to see a working demo.
