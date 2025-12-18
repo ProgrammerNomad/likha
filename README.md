@@ -390,4 +390,10 @@ Likha is built on the shoulders of giants:
 
 ## Author
 
-- Shiv Singh (GitHub: @ProgrammerNomad)
+**Shiv Singh**
+- GitHub: [@ProgrammerNomad](https://github.com/ProgrammerNomad)
+- Email: shiv@srapsware.com
+
+---
+
+**Built with ❤️ by [ProgrammerNomad](https://github.com/ProgrammerNomad)**

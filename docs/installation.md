@@ -116,7 +116,7 @@ Clone and build from source:
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/likha.git
+git clone https://github.com/ProgrammerNomad/likha.git
 cd likha
 
 # Install dependencies

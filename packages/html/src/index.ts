@@ -23,6 +23,126 @@ import {
 } from '@likha/plugins';
 import { Toolbar, Button, Dropdown, injectTheme } from '@likha/ui';
 
+/**
+ * Inject essential editor styles
+ */
+function injectEditorStyles() {
+  const styleId = 'likha-editor-styles';
+  
+  // Check if styles already injected
+  if (document.getElementById(styleId)) {
+    return;
+  }
+
+  const styles = `
+    /* ProseMirror Base Styles - REQUIRED */
+    .ProseMirror {
+      position: relative;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+      white-space: break-spaces;
+      -webkit-font-variant-ligatures: none;
+      font-variant-ligatures: none;
+      font-feature-settings: "liga" 0;
+    }
+    
+    .ProseMirror pre {
+      white-space: pre-wrap;
+    }
+    
+    .ProseMirror li {
+      position: relative;
+    }
+    
+    /* Likha Editor Core Styles */
+    .ProseMirror {
+      outline: none;
+      min-height: 200px;
+      padding: 12px;
+    }
+    
+    .ProseMirror p { margin: 0.5em 0; }
+    .ProseMirror h1 { font-size: 2em; font-weight: bold; margin: 0.67em 0; }
+    .ProseMirror h2 { font-size: 1.5em; font-weight: bold; margin: 0.75em 0; }
+    .ProseMirror h3 { font-size: 1.17em; font-weight: bold; margin: 0.83em 0; }
+    
+    .ProseMirror ul, .ProseMirror ol { margin: 0.5em 0; padding-left: 2em; }
+    .ProseMirror li { margin: 0.25em 0; }
+    
+    .ProseMirror blockquote {
+      border-left: 4px solid #ddd;
+      margin: 1em 0;
+      padding-left: 1em;
+      color: #666;
+    }
+    
+    .ProseMirror code {
+      background: #f5f5f5;
+      border: 1px solid #ddd;
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+    
+    .ProseMirror pre {
+      background: #f5f5f5;
+      border: 1px solid #ddd;
+      padding: 12px;
+      border-radius: 4px;
+      margin: 1em 0;
+    }
+    
+    .ProseMirror pre code { background: none; border: none; padding: 0; }
+    
+    .ProseMirror a { color: #4A90E2; text-decoration: underline; }
+    
+    .ProseMirror table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+    .ProseMirror td, .ProseMirror th { border: 1px solid #ddd; padding: 8px 12px; }
+    .ProseMirror th { background: #f5f5f5; font-weight: bold; }
+    
+    .ProseMirror hr { border: none; border-top: 2px solid #ddd; margin: 1.5em 0; }
+    
+    .ProseMirror img { max-width: 100%; height: auto; }
+    
+    /* Text formatting */
+    .ProseMirror strong { font-weight: bold; }
+    .ProseMirror em { font-style: italic; }
+    .ProseMirror u { text-decoration: underline; }
+    .ProseMirror s { text-decoration: line-through; }
+    .ProseMirror sub { vertical-align: sub; font-size: 0.8em; }
+    .ProseMirror sup { vertical-align: super; font-size: 0.8em; }
+    
+    /* CRITICAL FIX: Ensure highlight background is always visible */
+    .ProseMirror mark {
+      padding: 0 2px;
+      border-radius: 2px;
+      /* Force background to show even if style attribute present */
+    }
+    
+    .ProseMirror mark[style*="background-color"] {
+      /* Inline background-color will be applied via style attribute */
+      display: inline !important;
+    }
+    
+    /* Ensure text color and highlight work together */
+    .ProseMirror span[style*="color"] mark,
+    .ProseMirror mark span[style*="color"] {
+      display: inline !important;
+    }
+    
+    /* Fix for when both color and highlight are applied */
+    .ProseMirror span mark,
+    .ProseMirror mark span {
+      display: inline;
+    }
+  `;
+
+  const styleEl = document.createElement('style');
+  styleEl.id = styleId;
+  styleEl.textContent = styles;
+  document.head.appendChild(styleEl);
+}
+
 export interface LikhaEditorOptions {
   /** The element or selector to mount the editor */
   element: HTMLElement | string;
@@ -34,6 +154,8 @@ export interface LikhaEditorOptions {
   toolbar?: boolean;
   /** Toolbar container element or selector */
   toolbarContainer?: HTMLElement | string;
+  /** Toolbar configuration - specify which buttons to show */
+  toolbarButtons?: string[] | 'all';
   /** Enable specific plugins */
   plugins?: string[];
   /** Enable dark theme */
@@ -55,8 +177,9 @@ export function createEditor(options: LikhaEditorOptions) {
     throw new Error('Editor element not found');
   }
 
-  // Inject theme
+  // Inject theme and editor styles
   injectTheme();
+  injectEditorStyles();
 
   // Determine which plugins to load
   const enabledPlugins = options.plugins || [
@@ -172,7 +295,7 @@ export function createEditor(options: LikhaEditorOptions) {
       : null;
 
     if (toolbarContainer) {
-      toolbar = createDefaultToolbar(editor, toolbarContainer);
+      toolbar = createDefaultToolbar(editor, toolbarContainer, options.toolbarButtons);
     }
   }
 
@@ -277,11 +400,19 @@ function showColorPicker(button: HTMLElement, onSelect: (color: string) => void)
 /**
  * Create default toolbar for the editor
  */
-function createDefaultToolbar(editor: Editor, container: HTMLElement) {
+function createDefaultToolbar(editor: Editor, container: HTMLElement, buttonConfig?: string[] | 'all') {
   const toolbar = new Toolbar({
     container,
     sticky: false
   });
+
+  // Determine which buttons to show
+  const showAll = !buttonConfig || buttonConfig === 'all';
+  const enabledButtons = showAll ? [] : buttonConfig;
+  
+  const shouldShow = (button: string) => {
+    return showAll || enabledButtons.includes(button);
+  };
 
   // Icons (inline SVG strings)
   const icons = {
@@ -314,15 +445,19 @@ function createDefaultToolbar(editor: Editor, container: HTMLElement) {
   const headingDropdown = new Dropdown({
     placeholder: 'Paragraph',
     items: [
+      { value: 'normal', label: 'Styles' },
       { value: 'p', label: 'Paragraph' },
       { value: 'h1', label: 'Heading 1' },
       { value: 'h2', label: 'Heading 2' },
-      { value: 'h3', label: 'Heading 3' }
+      { value: 'h3', label: 'Heading 3' },
+      { value: 'h4', label: 'Heading 4' },
+      { value: 'h5', label: 'Heading 5' },
+      { value: 'h6', label: 'Heading 6' }
     ],
-    onSelect: (value) => {
-      if (value === 'p') {
+    onSelect: (value: string) => {
+      if (value === 'p' || value === 'normal') {
         editor.executeCommand('setParagraph');
-      } else {
+      } else if (value.startsWith('h')) {
         editor.executeCommand('toggleHeading', parseInt(value.substring(1)));
       }
       editor.view.focus();

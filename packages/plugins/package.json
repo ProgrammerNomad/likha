@@ -1,6 +1,6 @@
 {
   "name": "@likha/plugins",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Official plugins for Likha editor",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -29,10 +29,19 @@
     "plugins",
     "rich-text"
   ],
-  "author": "Shiv Singh",
+  "author": "Shiv Singh <shiv@srapsware.com> (https://github.com/ProgrammerNomad)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ProgrammerNomad/likha.git",
+    "directory": "packages/plugins"
+  },
+  "homepage": "https://github.com/ProgrammerNomad/likha#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
-    "@likha/core": "workspace:*",
+    "@likha/core": "^0.0.1",
     "prosemirror-commands": "^1.5.2",
     "prosemirror-inputrules": "^1.5.1",
     "prosemirror-keymap": "^1.2.2",

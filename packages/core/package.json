@@ -1,6 +1,6 @@
 {
   "name": "@likha/core",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Core editor engine for Likha - framework-agnostic",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -30,8 +30,17 @@
     "prosemirror",
     "wysiwyg"
   ],
-  "author": "Shiv Singh",
+  "author": "Shiv Singh <shiv@srapsware.com> (https://github.com/ProgrammerNomad)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ProgrammerNomad/likha.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://github.com/ProgrammerNomad/likha#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "prosemirror-commands": "^1.5.2",
     "prosemirror-history": "^1.3.2",

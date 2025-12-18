@@ -1,0 +1,204 @@
+/**
+ * Likha Editor Styles
+ * Include this CSS file when using Likha Editor
+ */
+
+/* ProseMirror Base Styles - REQUIRED */
+.ProseMirror {
+  position: relative;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  white-space: break-spaces;
+  -webkit-font-variant-ligatures: none;
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0;
+  outline: none;
+  min-height: 200px;
+  padding: 12px;
+}
+
+.ProseMirror pre {
+  white-space: pre-wrap;
+}
+
+.ProseMirror li {
+  position: relative;
+}
+
+/* Typography */
+.ProseMirror p { 
+  margin: 0.5em 0; 
+}
+
+.ProseMirror h1 { 
+  font-size: 2em; 
+  font-weight: bold; 
+  margin: 0.67em 0; 
+}
+
+.ProseMirror h2 { 
+  font-size: 1.5em; 
+  font-weight: bold; 
+  margin: 0.75em 0; 
+}
+
+.ProseMirror h3 { 
+  font-size: 1.17em; 
+  font-weight: bold; 
+  margin: 0.83em 0; 
+}
+
+.ProseMirror h4 {
+  font-size: 1em;
+  font-weight: bold;
+  margin: 1em 0;
+}
+
+.ProseMirror h5 {
+  font-size: 0.83em;
+  font-weight: bold;
+  margin: 1.5em 0;
+}
+
+.ProseMirror h6 {
+  font-size: 0.67em;
+  font-weight: bold;
+  margin: 2em 0;
+}
+
+/* Lists */
+.ProseMirror ul, 
+.ProseMirror ol { 
+  margin: 0.5em 0; 
+  padding-left: 2em; 
+}
+
+.ProseMirror li { 
+  margin: 0.25em 0; 
+}
+
+/* Blockquote */
+.ProseMirror blockquote {
+  border-left: 4px solid #ddd;
+  margin: 1em 0;
+  padding-left: 1em;
+  color: #666;
+}
+
+/* Code */
+.ProseMirror code {
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: monospace;
+}
+
+.ProseMirror pre {
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 12px;
+  border-radius: 4px;
+  margin: 1em 0;
+}
+
+.ProseMirror pre code { 
+  background: none; 
+  border: none; 
+  padding: 0; 
+}
+
+/* Links */
+.ProseMirror a { 
+  color: #4A90E2; 
+  text-decoration: underline; 
+}
+
+/* Tables */
+.ProseMirror table { 
+  border-collapse: collapse; 
+  width: 100%; 
+  margin: 1em 0; 
+}
+
+.ProseMirror td, 
+.ProseMirror th { 
+  border: 1px solid #ddd; 
+  padding: 8px 12px; 
+}
+
+.ProseMirror th { 
+  background: #f5f5f5; 
+  font-weight: bold; 
+}
+
+/* Horizontal Rule */
+.ProseMirror hr { 
+  border: none; 
+  border-top: 2px solid #ddd; 
+  margin: 1.5em 0; 
+}
+
+/* Images */
+.ProseMirror img { 
+  max-width: 100%; 
+  height: auto; 
+}
+
+/* Text Formatting */
+.ProseMirror strong { 
+  font-weight: bold; 
+}
+
+.ProseMirror em { 
+  font-style: italic; 
+}
+
+.ProseMirror u { 
+  text-decoration: underline; 
+}
+
+.ProseMirror s { 
+  text-decoration: line-through; 
+}
+
+.ProseMirror sub { 
+  vertical-align: sub; 
+  font-size: 0.8em; 
+}
+
+.ProseMirror sup { 
+  vertical-align: super; 
+  font-size: 0.8em; 
+}
+
+/* Highlight - CRITICAL for background colors */
+.ProseMirror mark {
+  padding: 0 2px;
+  border-radius: 2px;
+  display: inline !important;
+}
+
+.ProseMirror mark[style*="background-color"] {
+  display: inline !important;
+}
+
+/* Text color and highlight together */
+.ProseMirror span[style*="color"] mark,
+.ProseMirror mark span[style*="color"] {
+  display: inline !important;
+}
+
+.ProseMirror span mark,
+.ProseMirror mark span {
+  display: inline;
+}
+
+/* Placeholder */
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #aaa;
+  pointer-events: none;
+  height: 0;
+}

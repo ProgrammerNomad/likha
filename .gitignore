@@ -58,4 +58,9 @@ yarn.lock
 
 # Examples build output
 examples/dist/
+
+# VitePress
+docs/.vitepress/dist/
+docs/.vitepress/cache/
+.temp/
 .github/copilot-instructions.md

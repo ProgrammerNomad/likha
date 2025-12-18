@@ -30,10 +30,22 @@ export class Editor {
       options.plugins.forEach((plugin) => this.registerPlugin(plugin));
     }
 
-    // Collect ProseMirror plugins from custom plugins
+    // Collect ProseMirror plugins and keymaps from custom plugins
     const proseMirrorPlugins: ProseMirrorPlugin[] = [];
+    const customKeymaps: { [key: string]: any } = {};
+    
     Object.values(this.plugins).forEach((plugin) => {
       proseMirrorPlugins.push(...plugin.prosemirrorPlugins());
+      
+      // Collect keymaps from plugins and convert to ProseMirror format
+      const bindings = plugin.keymap();
+      if (bindings && Object.keys(bindings).length > 0) {
+        Object.entries(bindings).forEach(([key, fn]) => {
+          customKeymaps[key] = (state: any, dispatch: any, view: any) => {
+            return fn(this, state, dispatch, view);
+          };
+        });
+      }
     });
     
     // Create initial state
@@ -41,6 +53,9 @@ export class Editor {
       doc: this.parseContent(options.content || '', editorSchema),
       plugins: [
         history(),
+        // Place custom plugin keymaps before baseKeymap so list Enter handlers take priority
+        keymap(customKeymaps),
+        ...proseMirrorPlugins,
         keymap({
           'Mod-z': undo,
           'Mod-y': redo,
@@ -49,7 +64,6 @@ export class Editor {
           'Mod-u': toggleMark(editorSchema.marks.code),
         }),
         keymap(baseKeymap),
-        ...proseMirrorPlugins,
       ],
     });
 

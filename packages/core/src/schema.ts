@@ -6,7 +6,7 @@ import { addListNodes } from 'prosemirror-schema-list';
  * Extended schema with headings, lists, blockquote, HR, links, code blocks, and text alignment
  */
 export const likhaSchema: Schema = new Schema({
-  nodes: addListNodes(basicSchema.spec.nodes, 'paragraph block*', 'block')
+  nodes: addListNodes(basicSchema.spec.nodes, 'paragraph', 'block')
     .update('paragraph', {
       attrs: { textAlign: { default: 'left' } },
       content: 'inline*',

@@ -173,8 +173,8 @@ const toolbar = new Toolbar({ /* ... */ });
 ## Need Help?
 
 - 📖 **Documentation:** See main [README.md](../README.md)
-- 🐛 **Issues:** [GitHub Issues](https://github.com/yourusername/likha/issues)
-- 💬 **Discussions:** [GitHub Discussions](https://github.com/yourusername/likha/discussions)
+- 🐛 **Issues:** [GitHub Issues](https://github.com/ProgrammerNomad/likha/issues)
+- 💬 **Discussions:** [GitHub Discussions](https://github.com/ProgrammerNomad/likha/discussions)
 
 ## Key Concepts
 

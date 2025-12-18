@@ -1,5 +1,10 @@
 # Likha TODO List
 
+**🐛 KNOWN BUGS - High Priority:**
+- [ ] **List Enter key bug** - Enter button doesn't create new list items in bullet/ordered lists. Keymaps need debugging.
+
+---
+
 Track progress for the Likha editor development.
 
 **Legend:**
