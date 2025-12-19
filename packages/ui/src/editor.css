@@ -170,43 +170,27 @@
   font-size: 0.8em;
 }
 
-/* Highlight - IMPORTANT FIX */
+/* Highlight */
 .ProseMirror mark {
   padding: 0 2px;
   border-radius: 2px;
-  /* Ensure background color is always applied */
-  background-color: yellow !important;
-}
-
-/* When mark has custom background via inline style, it will override */
-.ProseMirror mark[style*="background-color"] {
-  /* Inline style will take precedence */
-}
-
-/* Selection */
-.ProseMirror ::selection {
-  background: rgba(74, 144, 226, 0.3);
-}
-
-/* Focus state for empty editor */
-.ProseMirror-focused {
-  /* Add any focus-specific styles if needed */
+  background-color: yellow;
+  color: inherit; /* Inherit text color from parent */
 }
 
 /* Ensure text color span works */
 .ProseMirror span[style*="color"] {
-  /* Color will be applied via inline style */
+  /* Inline color style will be applied */
 }
 
-/* Fix for nested marks (text color + highlight) */
+/* When both color and highlight are applied */
 .ProseMirror span[style*="color"] mark {
-  /* Ensure mark background is visible even with colored text */
-  display: inline;
+  /* Mark inside colored span should inherit the color */
+  color: inherit;
 }
 
 .ProseMirror mark span[style*="color"] {
-  /* Ensure colored text inside mark is visible */
-  display: inline;
+  /* Colored span inside mark keeps its color */
 }
 
 /* Table Grid Selector */

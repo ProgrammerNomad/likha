@@ -308,10 +308,19 @@ export function createEditor(options: LikhaEditorOptions) {
   };
 }
 
+// Track currently open color picker popup
+let currentColorPickerPopup: HTMLElement | null = null;
+
 /**
  * Show color picker popup
  */
 function showColorPicker(button: HTMLElement, onSelect: (color: string) => void) {
+  // Close any existing color picker first
+  if (currentColorPickerPopup && currentColorPickerPopup.parentNode) {
+    document.body.removeChild(currentColorPickerPopup);
+    currentColorPickerPopup = null;
+  }
+
   // Common color palette
   const colors = [
     '#000000', '#434343', '#666666', '#999999', '#B7B7B7', '#CCCCCC', '#D9D9D9', '#EFEFEF', '#F3F3F3', '#FFFFFF',
@@ -374,11 +383,15 @@ function showColorPicker(button: HTMLElement, onSelect: (color: string) => void)
       if (popup.parentNode) {
         document.body.removeChild(popup);
       }
+      currentColorPickerPopup = null;
       document.removeEventListener('click', closePopup);
     });
 
     popup.appendChild(square);
   });
+
+  // Store reference to current popup
+  currentColorPickerPopup = popup;
 
   // Close popup when clicking outside
   const closePopup = (e: MouseEvent) => {
@@ -386,6 +399,7 @@ function showColorPicker(button: HTMLElement, onSelect: (color: string) => void)
       if (popup.parentNode) {
         document.body.removeChild(popup);
       }
+      currentColorPickerPopup = null;
       document.removeEventListener('click', closePopup);
     }
   };
