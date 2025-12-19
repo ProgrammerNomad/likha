@@ -1,4 +1,5 @@
 import { Plugin } from '@likhaeditor/core';
+import { Plugin as ProseMirrorPlugin } from 'prosemirror-state';
 import { keymap } from 'prosemirror-keymap';
 
 /**
@@ -61,7 +62,7 @@ export class TextAlignmentPlugin extends Plugin {
     };
   }
 
-  prosemirrorPlugins() {
+  prosemirrorPlugins(): ProseMirrorPlugin[] {
     return [
       keymap({
         'Mod-Shift-l': (state, dispatch) => {

@@ -92,13 +92,13 @@ importers:
     dependencies:
       '@likhaeditor/core':
         specifier: ^0.0.1
-        version: link:../core
+        version: 0.0.1
       '@likhaeditor/plugins':
         specifier: ^0.0.1
-        version: link:../plugins
+        version: 0.0.1
       '@likhaeditor/ui':
         specifier: ^0.0.1
-        version: link:../ui
+        version: 0.0.1
       prosemirror-commands:
         specifier: ^1.5.2
         version: 1.7.1
@@ -140,7 +140,7 @@ importers:
   packages/plugins:
     dependencies:
       '@likhaeditor/core':
-        specifier: ^0.0.1
+        specifier: ^0.0.2
         version: link:../core
       prosemirror-commands:
         specifier: ^1.5.2
@@ -157,6 +157,9 @@ importers:
       prosemirror-schema-list:
         specifier: ^1.5.1
         version: 1.5.1
+      prosemirror-state:
+        specifier: ^1.4.3
+        version: 1.4.4
     devDependencies:
       '@types/node':
         specifier: ^20.10.0
@@ -175,7 +178,7 @@ importers:
     dependencies:
       '@likhaeditor/core':
         specifier: ^0.0.1
-        version: link:../core
+        version: 0.0.1
       lucide:
         specifier: ^0.294.0
         version: 0.294.0
@@ -822,6 +825,38 @@ packages:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
     dev: true
+
+  /@likhaeditor/core@0.0.1:
+    resolution: {integrity: sha512-nP2GJinya7IJwIsHjCRY7/GZvFUzV6Y1K5xyGdVB1z3Il8fro/NI6rnd2yQVOIcNviZHuRdsfqAoxMyUSGFoNg==}
+    dependencies:
+      prosemirror-commands: 1.7.1
+      prosemirror-history: 1.5.0
+      prosemirror-keymap: 1.2.3
+      prosemirror-model: 1.25.4
+      prosemirror-schema-basic: 1.2.4
+      prosemirror-schema-list: 1.5.1
+      prosemirror-state: 1.4.4
+      prosemirror-transform: 1.10.5
+      prosemirror-view: 1.41.4
+    dev: false
+
+  /@likhaeditor/plugins@0.0.1:
+    resolution: {integrity: sha512-UPX3Y5Blzu5yjtSQyzOoksxqItm/R/ViKYlQFdDUYEDlhFG2o2GIICcIgL14TiHG+0bZhBGaF9KRXMMo4Sq52g==}
+    dependencies:
+      '@likhaeditor/core': 0.0.1
+      prosemirror-commands: 1.7.1
+      prosemirror-inputrules: 1.5.1
+      prosemirror-keymap: 1.2.3
+      prosemirror-model: 1.25.4
+      prosemirror-schema-list: 1.5.1
+    dev: false
+
+  /@likhaeditor/ui@0.0.1:
+    resolution: {integrity: sha512-AUZNP9uPptHodB4bqwX2gZO9agW2a28kUf5cwoG2W9eW02U4tQcRm7igYXnj3mukiWCf9H9CPJIzWBmbWgZfSg==}
+    dependencies:
+      '@likhaeditor/core': 0.0.1
+      lucide: 0.294.0
+    dev: false
 
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}

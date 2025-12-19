@@ -1,6 +1,6 @@
 {
   "name": "@likhaeditor/ui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "UI components for Likha editor",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -43,7 +43,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@likhaeditor/core": "^0.0.1",
+    "@likhaeditor/core": "^0.0.2",
     "lucide": "^0.294.0"
   },
   "devDependencies": {

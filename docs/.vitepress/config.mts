@@ -14,10 +14,11 @@ export default defineConfig({
       { text: 'Guide', link: '/guide/getting-started' },
       { text: 'API', link: '/api/core' },
       { text: 'Examples', link: '/examples/' },
+      { text: 'Changelog', link: '/changelog' },
       {
-        text: 'v0.0.1',
+        text: 'v0.0.2',
         items: [
-          { text: 'v0.0.1 (current)', link: '/' }
+          { text: 'v0.0.2 (current)', link: '/' }
         ]
       }
     ],

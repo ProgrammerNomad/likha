@@ -1,6 +1,6 @@
 {
-  "name": "likha",
-  "version": "0.0.0",
+  "name": "likhaeditor",
+  "version": "0.0.2",
   "private": true,
   "description": "Open-source, self-hosted, framework-agnostic rich text editor",
   "author": "Shiv Singh <shiv@srapsware.com>",

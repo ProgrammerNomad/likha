@@ -1,4 +1,5 @@
 import { Plugin } from '@likhaeditor/core';
+import { Plugin as ProseMirrorPlugin } from 'prosemirror-state';
 import { keymap } from 'prosemirror-keymap';
 
 /**
@@ -109,7 +110,7 @@ export class LinkPlugin extends Plugin {
     };
   }
 
-  prosemirrorPlugins() {
+  prosemirrorPlugins(): ProseMirrorPlugin[] {
     return [
       keymap({
         'Mod-k': (state, dispatch) => {

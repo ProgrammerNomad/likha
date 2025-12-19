@@ -1,6 +1,7 @@
 import { Plugin } from '@likhaeditor/core';
 import { keymap } from 'prosemirror-keymap';
 import { setBlockType } from 'prosemirror-commands';
+import { Plugin as ProseMirrorPlugin } from 'prosemirror-state';
 
 /**
  * Code block plugin
@@ -73,7 +74,7 @@ export class CodeBlockPlugin extends Plugin {
     };
   }
 
-  prosemirrorPlugins() {
+  prosemirrorPlugins(): ProseMirrorPlugin[] {
     return [
       keymap({
         'Mod-Alt-c': (state, dispatch) => {

@@ -25,6 +25,7 @@ export declare class Editor {
     bold(): boolean;
     italic(): boolean;
     code(): boolean;
+    underline(): boolean;
     undo(): boolean;
     redo(): boolean;
     isActive(markName: string): boolean;

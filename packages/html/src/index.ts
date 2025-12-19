@@ -665,7 +665,7 @@ function createDefaultToolbar(editor: Editor, container: HTMLElement, buttonConf
   const tableGridSelector = new TableGrid({
     maxRows: 10,
     maxCols: 10,
-    onSelect: (rows, cols) => {
+    onSelect: (rows: number, cols: number) => {
       editor.executeCommand('insertTable', rows, cols);
       tableGridContainer.style.display = 'none';
       editor.view.focus();

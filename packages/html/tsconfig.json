@@ -14,7 +14,13 @@
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "baseUrl": ".",
+    "paths": {
+      "@likhaeditor/core": ["../core/src/index.ts"],
+      "@likhaeditor/plugins": ["../plugins/src/index.ts"],
+      "@likhaeditor/ui": ["../ui/src/index.ts"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
