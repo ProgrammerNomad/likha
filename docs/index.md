@@ -78,7 +78,7 @@ LikhaEditor is a **modern, framework-agnostic rich text editor** built on ProseM
 
 ## Current Status
 
-**Version:** 0.0.1  
+**Version:** 0.0.2  
 **Released:** December 18, 2025
 
 ### NPM Packages
