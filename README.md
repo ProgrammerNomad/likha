@@ -117,17 +117,21 @@ composer require nomadprogrammer/likha-laravel
 
 ### Core editing
 
-- Paragraphs and headings
-- Bold, italic, underline
-- Links and lists
-- Undo and redo with keyboard shortcuts
+- ✅ Paragraphs and headings
+- ✅ Bold, italic, underline, strikethrough
+- ✅ Links and lists (bullet, ordered)
+- ✅ Undo and redo with keyboard shortcuts
+- ✅ Text color and highlighting
+- ✅ Subscript and superscript
 
 ### Advanced blocks
 
-- Tables with resize and cell merge
-- Images with upload, resize, and alignment controls
-- Code blocks with syntax highlighting
-- Blockquotes and horizontal rules
+- ✅ Tables with insert and basic editing
+- ✅ Images with upload, resize, and alignment controls
+- ✅ Code blocks with language selection
+- ✅ Blockquotes and horizontal rules
+- ⏳ Table cell merge and advanced editing (planned)
+- ⏳ Syntax highlighting for code blocks (planned)
 
 ### Professional capabilities (self-hosted)
 
@@ -255,7 +259,7 @@ editor.use(TrackChangesPlugin);
 
 ### NPM Packages
 
-All packages are published under the `@nomadprogrammer` scope on npm:
+All packages are published under the `@likhaeditor` scope on npm:
 
 | Package | Version | Description |
 |---------|---------|-------------|
@@ -292,18 +296,6 @@ likha/
 - ES modules and modern build tooling (pnpm workspace)
 - Zero framework dependency inside the core package
 
-## Package Naming
-
-All official packages are published under the `@nomadprogrammer` scope on npm:
-
-- `@likhaeditor/core` - Editor engine
-- `@likhaeditor/ui` - UI components
-- `@likhaeditor/plugins` - Official plugins
-- `@likhaeditor/likhaeditor` - Vanilla JS wrapper
-- `@likhaeditor/likhaeditor-react` - React components (coming soon)
-- `@likhaeditor/likhaeditor-laravel` - Laravel integration (coming soon)
-- `@likhaeditor/likhaeditor-livewire` - Livewire integration (coming soon)
-
 ## License
 
 LikhaEditor is distributed under the MIT License.
@@ -326,13 +318,14 @@ Please review CONTRIBUTING.md before submitting a pull request.
 
 ## Roadmap to Version 1.0
 
-- Ship the core editor engine
-- Release a starter plugin bundle
-- Publish the plain HTML adapter
-- Deliver the Laravel Blade component
-- Finalize Livewire integration package
-- Launch official documentation site
-- Bootstrap community plugin gallery
+- ✅ Ship the core editor engine
+- ✅ Release a starter plugin bundle (20 plugins)
+- ✅ Publish the plain HTML adapter
+- ✅ Launch official documentation site (likhaeditor.netlify.app)
+- 🚧 Deliver the React adapter (in progress)
+- ⏳ Deliver the Laravel Blade component (planned)
+- ⏳ Finalize Livewire integration package (planned)
+- ⏳ Bootstrap community plugin gallery (planned)
 
 ## Vision
 
