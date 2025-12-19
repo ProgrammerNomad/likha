@@ -1,80 +1,61 @@
-/**
- * Likha Editor Styles
- * Include this CSS file when using Likha Editor
- */
+/* Likha Editor - Core Styles */
 
-/* ProseMirror Base Styles - REQUIRED */
-.ProseMirror {
-  position: relative;
-  word-wrap: break-word;
-  white-space: pre-wrap;
-  white-space: break-spaces;
-  -webkit-font-variant-ligatures: none;
-  font-variant-ligatures: none;
-  font-feature-settings: "liga" 0;
-  outline: none;
-  min-height: 200px;
+/* Editor container */
+.likha-editor {
+  border: 1px solid #ddd;
+  border-radius: 4px;
   padding: 12px;
+  min-height: 200px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background: white;
+  outline: none;
 }
 
-.ProseMirror pre {
-  white-space: pre-wrap;
+.likha-editor:focus {
+  border-color: #4A90E2;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.1);
 }
 
-.ProseMirror li {
-  position: relative;
+/* ProseMirror element */
+.ProseMirror {
+  outline: none;
+  min-height: inherit;
 }
 
-/* Typography */
-.ProseMirror p { 
-  margin: 0.5em 0; 
+/* Placeholder */
+.ProseMirror p.is-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: #aaa;
+  pointer-events: none;
+  height: 0;
+  float: left;
 }
 
-.ProseMirror h1 { 
-  font-size: 2em; 
-  font-weight: bold; 
-  margin: 0.67em 0; 
-}
+/* Headings */
+.ProseMirror h1 { font-size: 2em; font-weight: bold; margin: 0.67em 0; }
+.ProseMirror h2 { font-size: 1.5em; font-weight: bold; margin: 0.75em 0; }
+.ProseMirror h3 { font-size: 1.17em; font-weight: bold; margin: 0.83em 0; }
+.ProseMirror h4 { font-size: 1em; font-weight: bold; margin: 1.12em 0; }
+.ProseMirror h5 { font-size: 0.83em; font-weight: bold; margin: 1.5em 0; }
+.ProseMirror h6 { font-size: 0.75em; font-weight: bold; margin: 1.67em 0; }
 
-.ProseMirror h2 { 
-  font-size: 1.5em; 
-  font-weight: bold; 
-  margin: 0.75em 0; 
-}
-
-.ProseMirror h3 { 
-  font-size: 1.17em; 
-  font-weight: bold; 
-  margin: 0.83em 0; 
-}
-
-.ProseMirror h4 {
-  font-size: 1em;
-  font-weight: bold;
-  margin: 1em 0;
-}
-
-.ProseMirror h5 {
-  font-size: 0.83em;
-  font-weight: bold;
-  margin: 1.5em 0;
-}
-
-.ProseMirror h6 {
-  font-size: 0.67em;
-  font-weight: bold;
-  margin: 2em 0;
+/* Paragraphs */
+.ProseMirror p {
+  margin: 0.5em 0;
 }
 
 /* Lists */
-.ProseMirror ul, 
-.ProseMirror ol { 
-  margin: 0.5em 0; 
-  padding-left: 2em; 
+.ProseMirror ul,
+.ProseMirror ol {
+  margin: 0.5em 0;
+  padding-left: 2em;
 }
 
-.ProseMirror li { 
-  margin: 0.25em 0; 
+.ProseMirror li {
+  margin: 0.25em 0;
 }
 
 /* Blockquote */
@@ -83,122 +64,196 @@
   margin: 1em 0;
   padding-left: 1em;
   color: #666;
+  font-style: italic;
 }
 
 /* Code */
 .ProseMirror code {
   background: #f5f5f5;
   border: 1px solid #ddd;
-  padding: 2px 4px;
   border-radius: 3px;
-  font-family: monospace;
+  padding: 2px 4px;
+  font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+  font-size: 0.9em;
 }
 
 .ProseMirror pre {
   background: #f5f5f5;
   border: 1px solid #ddd;
-  padding: 12px;
   border-radius: 4px;
+  padding: 12px;
+  overflow-x: auto;
+  font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+  font-size: 0.9em;
   margin: 1em 0;
 }
 
-.ProseMirror pre code { 
-  background: none; 
-  border: none; 
-  padding: 0; 
+.ProseMirror pre code {
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 /* Links */
-.ProseMirror a { 
-  color: #4A90E2; 
-  text-decoration: underline; 
+.ProseMirror a {
+  color: #4A90E2;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
-/* Tables */
-.ProseMirror table { 
-  border-collapse: collapse; 
-  width: 100%; 
-  margin: 1em 0; 
-}
-
-.ProseMirror td, 
-.ProseMirror th { 
-  border: 1px solid #ddd; 
-  padding: 8px 12px; 
-}
-
-.ProseMirror th { 
-  background: #f5f5f5; 
-  font-weight: bold; 
-}
-
-/* Horizontal Rule */
-.ProseMirror hr { 
-  border: none; 
-  border-top: 2px solid #ddd; 
-  margin: 1.5em 0; 
+.ProseMirror a:hover {
+  color: #357ABD;
 }
 
 /* Images */
-.ProseMirror img { 
-  max-width: 100%; 
-  height: auto; 
+.ProseMirror img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
 }
 
-/* Text Formatting */
-.ProseMirror strong { 
-  font-weight: bold; 
+/* Tables */
+.ProseMirror table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+  overflow: hidden;
 }
 
-.ProseMirror em { 
-  font-style: italic; 
+.ProseMirror td,
+.ProseMirror th {
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  vertical-align: top;
+  text-align: left;
+  position: relative;
 }
 
-.ProseMirror u { 
-  text-decoration: underline; 
+.ProseMirror th {
+  background: #f5f5f5;
+  font-weight: bold;
 }
 
-.ProseMirror s { 
-  text-decoration: line-through; 
+/* Horizontal Rule */
+.ProseMirror hr {
+  border: none;
+  border-top: 2px solid #ddd;
+  margin: 1.5em 0;
 }
 
-.ProseMirror sub { 
-  vertical-align: sub; 
-  font-size: 0.8em; 
+/* Text formatting marks */
+.ProseMirror strong {
+  font-weight: bold;
 }
 
-.ProseMirror sup { 
-  vertical-align: super; 
-  font-size: 0.8em; 
+.ProseMirror em {
+  font-style: italic;
 }
 
-/* Highlight - CRITICAL for background colors */
+.ProseMirror u {
+  text-decoration: underline;
+}
+
+.ProseMirror s,
+.ProseMirror del,
+.ProseMirror strike {
+  text-decoration: line-through;
+}
+
+.ProseMirror sub {
+  vertical-align: sub;
+  font-size: 0.8em;
+}
+
+.ProseMirror sup {
+  vertical-align: super;
+  font-size: 0.8em;
+}
+
+/* Highlight - IMPORTANT FIX */
 .ProseMirror mark {
   padding: 0 2px;
   border-radius: 2px;
-  display: inline !important;
+  /* Ensure background color is always applied */
+  background-color: yellow !important;
 }
 
+/* When mark has custom background via inline style, it will override */
 .ProseMirror mark[style*="background-color"] {
-  display: inline !important;
+  /* Inline style will take precedence */
 }
 
-/* Text color and highlight together */
-.ProseMirror span[style*="color"] mark,
-.ProseMirror mark span[style*="color"] {
-  display: inline !important;
+/* Selection */
+.ProseMirror ::selection {
+  background: rgba(74, 144, 226, 0.3);
 }
 
-.ProseMirror span mark,
-.ProseMirror mark span {
+/* Focus state for empty editor */
+.ProseMirror-focused {
+  /* Add any focus-specific styles if needed */
+}
+
+/* Ensure text color span works */
+.ProseMirror span[style*="color"] {
+  /* Color will be applied via inline style */
+}
+
+/* Fix for nested marks (text color + highlight) */
+.ProseMirror span[style*="color"] mark {
+  /* Ensure mark background is visible even with colored text */
   display: inline;
 }
 
-/* Placeholder */
-.ProseMirror p.is-editor-empty:first-child::before {
-  content: attr(data-placeholder);
-  float: left;
-  color: #aaa;
-  pointer-events: none;
-  height: 0;
+.ProseMirror mark span[style*="color"] {
+  /* Ensure colored text inside mark is visible */
+  display: inline;
+}
+
+/* Table Grid Selector */
+.likha-button-wrapper {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.likha-table-grid {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+}
+
+.likha-table-grid__grid {
+  display: grid;
+  gap: 2px;
+  padding: 8px;
+}
+
+.likha-table-grid__cell {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #e0e0e0;
+  background: white;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.likha-table-grid__cell:hover {
+  border-color: #4A90E2;
+}
+
+.likha-table-grid__cell--active {
+  background: #4A90E2;
+  border-color: #4A90E2;
+}
+
+.likha-table-grid__label {
+  text-align: center;
+  padding: 8px;
+  font-size: 12px;
+  color: #666;
+  border-top: 1px solid #eee;
+  background: #f9f9f9;
+  font-weight: 500;
 }

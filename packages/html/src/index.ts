@@ -21,7 +21,7 @@ import {
   SuperscriptPlugin,
   ClearFormattingPlugin
 } from '@likhaeditor/plugins';
-import { Toolbar, Button, Dropdown, injectTheme } from '@likhaeditor/ui';
+import { Toolbar, Button, Dropdown, TableGrid, injectTheme } from '@likhaeditor/ui';
 
 /**
  * Inject essential editor styles
@@ -483,7 +483,7 @@ function createDefaultToolbar(editor: Editor, container: HTMLElement, buttonConf
   toolbar.addGroup([undoBtn.getElement(), redoBtn.getElement()]);
   toolbar.addSeparator();
 
-  // TEXT FORMATTING GROUP (like TinyMCE, CKEditor, Quill)
+  // TEXT FORMATTING GROUP
   const boldBtn = new Button({
     icon: icons.bold,
     title: 'Bold (Ctrl+B)',
@@ -618,11 +618,54 @@ function createDefaultToolbar(editor: Editor, container: HTMLElement, buttonConf
     }
   });
 
-  const tableBtn = new Button({
+  // Table button with grid selector dropdown
+  const tableBtn = document.createElement('div');
+  tableBtn.className = 'likha-button-wrapper';
+  tableBtn.style.position = 'relative';
+  tableBtn.style.display = 'inline-block';
+
+  const tableBtnInner = new Button({
     icon: icons.table,
     title: 'Insert Table',
-    onClick: () => {
-      editor.executeCommand('insertTable', { rows: 3, cols: 3 });
+    onClick: (e) => {
+      e.stopPropagation();
+      // Toggle grid visibility
+      if (tableGridContainer.style.display === 'block') {
+        tableGridContainer.style.display = 'none';
+      } else {
+        tableGridContainer.style.display = 'block';
+      }
+    }
+  });
+
+  const tableGridContainer = document.createElement('div');
+  tableGridContainer.style.cssText = `
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 4px;
+    display: none;
+    z-index: 1000;
+  `;
+
+  const tableGridSelector = new TableGrid({
+    maxRows: 10,
+    maxCols: 10,
+    onSelect: (rows, cols) => {
+      editor.executeCommand('insertTable', rows, cols);
+      tableGridContainer.style.display = 'none';
+      editor.view.focus();
+    }
+  });
+
+  tableGridContainer.appendChild(tableGridSelector.getElement());
+  tableBtn.appendChild(tableBtnInner.getElement());
+  tableBtn.appendChild(tableGridContainer);
+
+  // Close grid when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!tableBtn.contains(e.target as Node)) {
+      tableGridContainer.style.display = 'none';
     }
   });
 
@@ -634,7 +677,7 @@ function createDefaultToolbar(editor: Editor, container: HTMLElement, buttonConf
     }
   });
 
-  toolbar.addGroup([imageBtn.getElement(), tableBtn.getElement(), hrBtn.getElement()]);
+  toolbar.addGroup([imageBtn.getElement(), tableBtn, hrBtn.getElement()]);
   toolbar.addSeparator();
 
   // ADVANCED GROUP (Code, Colors, Source)

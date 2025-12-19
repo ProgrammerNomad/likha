@@ -208,3 +208,52 @@
   /* Ensure colored text inside mark is visible */
   display: inline;
 }
+
+/* Table Grid Selector */
+.likha-button-wrapper {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.likha-table-grid {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+}
+
+.likha-table-grid__grid {
+  display: grid;
+  gap: 2px;
+  padding: 8px;
+}
+
+.likha-table-grid__cell {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #e0e0e0;
+  background: white;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.likha-table-grid__cell:hover {
+  border-color: #4A90E2;
+}
+
+.likha-table-grid__cell--active {
+  background: #4A90E2;
+  border-color: #4A90E2;
+}
+
+.likha-table-grid__label {
+  text-align: center;
+  padding: 8px;
+  font-size: 12px;
+  color: #666;
+  border-top: 1px solid #eee;
+  background: #f9f9f9;
+  font-weight: 500;
+}
